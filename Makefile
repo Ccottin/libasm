@@ -6,17 +6,20 @@
 #    By: ccottin <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/08/03 12:16:24 by ccottin           #+#    #+#              #
-#    Updated: 2023/09/28 19:29:21 by ccottin          ###   ########.fr        #
+#    Updated: 2023/09/29 20:35:47 by ccottin          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME	= libasm.a
 
-SRCS	= ft_strlen.s ft_strcpy.s
+SRCS	= ft_strlen.s ft_strcpy.s ft_strcmp.s #ft_stryo.s
 OBJS	= $(SRCS:.s=.o)
+
+LD        = ld
 
 AS		= nasm
 ASFLAGS	= -f elf64
+TSFLAGS	= -g
 
 CC		= gcc
 CFLAGS	= -m64 -Wall -Wextra -Werror -g
@@ -25,6 +28,7 @@ MAIN	= main.c
 all:	$(NAME)
 
 #linke les .o generes par la regle %.o
+
 $(NAME):	$(OBJS)
 			ar rcs $@ $(OBJS)
 			@ranlib $(NAME)
@@ -32,7 +36,8 @@ $(NAME):	$(OBJS)
 #definit la regle de compilation a effectuer pour chaque fichier,
 #les uns apres les autres
 %.o:	%.s
-		$(AS) $(ASFLAGS) $< -o $@ 
+		$(AS) $(ASFLAGS) $(TSFLAGS) $< -o $@ 
+
 
 #pour avoir dirctement tous les tests prets a etre executes :
 # -L. cherche une librairie dans le repertroire courant
