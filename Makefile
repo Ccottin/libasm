@@ -6,13 +6,13 @@
 #    By: ccottin <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/08/03 12:16:24 by ccottin           #+#    #+#              #
-#    Updated: 2023/09/29 20:35:47 by ccottin          ###   ########.fr        #
+#    Updated: 2023/09/30 19:43:36 by ccottin          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME	= libasm.a
 
-SRCS	= ft_strlen.s ft_strcpy.s ft_strcmp.s #ft_stryo.s
+SRCS	= ft_strlen.s ft_strcpy.s ft_strcmp.s ft_write.s
 OBJS	= $(SRCS:.s=.o)
 
 LD        = ld
@@ -22,7 +22,8 @@ ASFLAGS	= -f elf64
 TSFLAGS	= -g
 
 CC		= gcc
-CFLAGS	= -m64 -Wall -Wextra -Werror -g
+CPATH	= .
+CFLAGS	= -m64 -Wall -Wextra -g # -Werror -g
 MAIN	= main.c
 
 all:	$(NAME)
@@ -42,14 +43,14 @@ $(NAME):	$(OBJS)
 #pour avoir dirctement tous les tests prets a etre executes :
 # -L. cherche une librairie dans le repertroire courant
 # -lasm permet de specifier qu on lie une librairie asm
-test:	$(NAME)
-		$(CC) $(CFLAGS) -o $@ $(MAIN) -L. -lasm
+testing:	$(NAME) $(MAIN)
+		$(CC) $(CFLAGS) -o $@ $(MAIN) -L$(CPATH) -lasm
 
 clean:
 		rm -rf $(OBJS)
 
 fclean:	clean
-		rm -rf $(NAME) test
+		rm -rf $(NAME) testing
 
 re:		fclean
 		make
