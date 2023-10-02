@@ -6,13 +6,13 @@
 #    By: ccottin <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/08/03 12:16:24 by ccottin           #+#    #+#              #
-#    Updated: 2023/09/30 19:43:36 by ccottin          ###   ########.fr        #
+#    Updated: 2023/10/02 18:40:29 by ccottin          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME	= libasm.a
 
-SRCS	= ft_strlen.s ft_strcpy.s ft_strcmp.s ft_write.s
+SRCS	= ft_strlen.s ft_strcpy.s ft_strcmp.s ft_write.s ft_read.s ft_strdup.s
 OBJS	= $(SRCS:.s=.o)
 
 LD        = ld
@@ -21,7 +21,7 @@ AS		= nasm
 ASFLAGS	= -f elf64
 TSFLAGS	= -g
 
-CC		= gcc
+CC		= cc
 CPATH	= .
 CFLAGS	= -m64 -Wall -Wextra -g # -Werror -g
 MAIN	= main.c

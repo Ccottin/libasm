@@ -17,9 +17,9 @@ ft_strcpy :
 
 	copy:
 		cmp byte	[rsi], 0
-		je			exit	; if fin de chaine on exit
-		mov	rbx, [rsi]		; copie le caractere dans temp
-		mov	[rdi], rbx		; copie temp dans dest
+		je			exit			; if fin de chaine on exit
+		mov			rbx, [rsi]		; copie le caractere dans temp
+		mov			[rdi], rbx		; copie temp dans dest
 		inc			rsi
 		inc			rdi
 		jmp			copy

@@ -1,7 +1,5 @@
-section	.data
-	extern ___error
-
 global	ft_write
+extern __errno_location
 
 section	.text
 	
@@ -16,8 +14,10 @@ section	.text
 		jmp		exit
 
 	set_errno:
-		mov		[___error], rax	
-		neg		qword [___error]
+		neg		rax
+		mov		rbx, rax
+		call	__errno_location
+		mov		[rax], rbx
 		mov		rax, -1
 
 	exit:
