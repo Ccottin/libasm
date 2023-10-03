@@ -18,11 +18,11 @@ extern char		*ft_strdup(const char *s);
 int    main(int ac, char **av)
 {
 	(void)ac;
-//	char	*dest;
-//	int i;
+	char	*dest;
+	int i;
     
 //	printf("size:%d\n", ft_strlen(av[1]));
-/*	if (av[1])
+	if (av[1])
 		i = ft_strlen(av[1]);
 	else 
 		i = 2;
@@ -35,7 +35,7 @@ int    main(int ac, char **av)
 	else
 		printf(".-%s-.\n", dest);
 	free(dest);
-	*/
+	
 //	printf("true = %d \n", strcmp(NULL, NULL));
 //	printf("fasl = %d \n", ft_strcmp(NULL, NULL));
 //	printf("true = %d \n", strcmp(av[1], av[2]));
@@ -77,7 +77,7 @@ int    main(int ac, char **av)
 	close(fd);
 */
 
-	char	*dest;
+//	char	*dest;
 	
 	dest = strdup(av[1]);
 	printf("dest = %s\n", dest);

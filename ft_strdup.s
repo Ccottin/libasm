@@ -10,17 +10,19 @@ section .text
 		push	rbp
 		mov		rbp, rsp
 
+		mov		r8, rdi		;stocker la chaine a copier
 		call	ft_strlen	;recuperer la taille de la chaine
 		inc		rax			;octet null
-		mov		r8, rdi		;stocker la chaine a copier
+		b0:
 		mov		rdi, rax	;passer la taille en argument
 		call	malloc		;allocation
 		cmp		rax, 0		;gestion d erreur de malloc
-		jl		set_errno		;jump if less
+		jl		set_errno	;jump if less
 		mov		rdi, rax	;passer l adresse de malloc en premier arg
 		mov		rsi, r8		;passer src en deuxieme arg	
+		b1 :
 		call	ft_strcpy	;copier la chaine 
-			
+		b2 :
 	exit :
 		mov		rsp, rbp
 		pop		rbp
