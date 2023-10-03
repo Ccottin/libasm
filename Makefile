@@ -6,7 +6,7 @@
 #    By: ccottin <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/08/03 12:16:24 by ccottin           #+#    #+#              #
-#    Updated: 2023/10/02 18:40:29 by ccottin          ###   ########.fr        #
+#    Updated: 2023/10/03 16:19:35 by ccottin          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -55,4 +55,4 @@ fclean:	clean
 re:		fclean
 		make
 
-.PHONY	:	all fclean clean re test
+.PHONY	:	all fclean clean re testing
