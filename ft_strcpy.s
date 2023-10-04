@@ -16,14 +16,12 @@ ft_strcpy :
 	je		exit			; if src vide on exit
 
 	copy:
+		mov			bl, [rsi]		; copie le caractere dans temp
+		mov			[rdi], bl		; copie temp dans dest
 		cmp byte	[rsi], 0
 		je			exit			; if fin de chaine on exit
-		mov			bl, [rsi]		; copie le caractere dans temp
-		b1 :
-		mov			[rdi], bl		; copie temp dans dest
 		inc			rsi
 		inc			rdi
-		b2 :
 		jmp			copy
 
 	exit :

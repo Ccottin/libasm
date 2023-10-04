@@ -6,7 +6,7 @@
 #    By: ccottin <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/08/03 12:16:24 by ccottin           #+#    #+#              #
-#    Updated: 2023/10/03 16:19:35 by ccottin          ###   ########.fr        #
+#    Updated: 2023/10/04 14:55:55 by ccottin          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,7 @@ TSFLAGS	= -g
 CC		= cc
 CPATH	= .
 CFLAGS	= -m64 -Wall -Wextra -g # -Werror -g
-MAIN	= main.c
+MAIN	= testyo.c
 
 all:	$(NAME)
 
@@ -50,7 +50,7 @@ clean:
 		rm -rf $(OBJS)
 
 fclean:	clean
-		rm -rf $(NAME) testing
+		rm -rf $(NAME) testing test1 test2 NewFile
 
 re:		fclean
 		make

@@ -12,12 +12,15 @@ section .text
 
 		mov		r8, rdi		;stocker la chaine a copier
 		call	ft_strlen	;recuperer la taille de la chaine
+		cmp		rax, 0
 		inc		rax			;octet null
-		b0:
+		push	rax			;stocker la taille 
 		mov		rdi, rax	;passer la taille en argument
 		call	malloc		;allocation
 		cmp		rax, 0		;gestion d erreur de malloc
 		jl		set_errno	;jump if less
+		cmp		rsp, 0
+		je		exit
 		mov		rdi, rax	;passer l adresse de malloc en premier arg
 		mov		rsi, r8		;passer src en deuxieme arg	
 		b1 :

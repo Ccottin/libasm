@@ -17,9 +17,7 @@ section .text
 		je		exit
 
 		loop:
-				stamp1:
 			mov	al, [rdi]
-				stamp2:
 			mov	bl, [rsi]
 			sub	rax, rbx				;soustrait la valeur de [s2] a [s1]
 			cmp	rax, 0					;verifie la valeur de rax
