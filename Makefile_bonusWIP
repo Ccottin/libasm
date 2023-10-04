@@ -6,16 +6,20 @@
 #    By: ccottin <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/08/03 12:16:24 by ccottin           #+#    #+#              #
-#    Updated: 2023/10/04 19:46:44 by ccottin          ###   ########.fr        #
+#    Updated: 2023/10/04 19:42:28 by ccottin          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME	= libasm.a
+BNNAME	= bonus_libasm.a
 
-SRCS	= ft_strlen.s ft_strcpy.s ft_strcmp.s ft_write.s ft_read.s ft_strdup.s ft_atoi_base.s
+SRCS	= ft_strlen.s ft_strcpy.s ft_strcmp.s ft_write.s ft_read.s ft_strdup.s
 OBJS	= $(SRCS:.s=.o)
 
-LD        = ld
+BNSRCS	= ft_atoi_base.s
+BNOBJS	= $(BNSRCS:.s=.o)
+
+LD 		= ld
 
 AS		= nasm
 ASFLAGS	= -f elf64
@@ -29,6 +33,8 @@ MAIN	= main.c
 
 all:	$(NAME)
 
+bonus:	$(BNNAME)
+
 #linke les .o generes par la regle %.o
 
 $(NAME):	$(OBJS)
@@ -40,20 +46,25 @@ $(NAME):	$(OBJS)
 %.o:	%.s
 		$(AS) $(ASFLAGS) $(TSFLAGS) $< -o $@ 
 
+$(BNNAME): 	$(BNOBJS) $(OBJS)
+		ar rcs $@ $(BNOBJS) $(OBJS) 
+		@ranlib $(BNNAME)
 
 #pour avoir dirctement tous les tests prets a etre executes :
 # -L. cherche une librairie dans le repertroire courant
 # -lasm permet de specifier qu on lie une librairie asm
-testing:	$(NAME) $(MAIN)
+testing: $(BNNAME) $(MAIN)
 		$(CC) $(CFLAGS) -o $@ $(MAIN) -L$(CPATH) -lasm
 
 clean:
 		rm -rf $(OBJS)
+bonus_clean:
+		rm -rf $(BNOBJS)
 
-fclean:	clean
-		rm -rf $(NAME) testing test1 test2 NewFile
+fclean:	clean bonus_clean
+		rm -rf $(NAME) $(BNNAME) testing test1 test2 NewFile
 
 re:		fclean
 		make
 
-.PHONY	:	all fclean clean re testing
+.PHONY	:	all fclean clean re testing bonus bonus_clean

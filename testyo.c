@@ -9,6 +9,7 @@
 #include <errno.h>
 #include <signal.h>
 
+extern int ft_atoi_base(char *str, char *base);
 extern char * ft_strcpy(char *dest, const char *src);
 extern int ft_strlen(char *s);
 extern int ft_strcmp(const char *s1, const char *s2);
@@ -307,8 +308,6 @@ void	ft_sigsev(int signum)
 
 int	main()
 {
-	signal(11, ft_sigsev);
-	
 	printf("-----TESTS ft_strcpy-----\n\n");
 	test_ft_strcpy();
 	printf("-----TESTS ft_strcmp-----\n\n");

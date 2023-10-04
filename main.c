@@ -7,6 +7,7 @@
 #include <sys/stat.h>
 #include <fcntl.h>
 
+extern int		ft_atoi_base(char *str, char *base);
 extern ssize_t	ft_write(int fd, const void *buf, size_t count);
 extern int		ft_strlen(const char *s);
 extern int		ft_strcmp(const char *s1, const char *s2);
@@ -142,7 +143,7 @@ void	test_strlen(char *str)
 
 int    main(int ac, char **av)
 {
-	if (ac != 8)
+/*	if (ac != 8)
 	{
 		printf("rentrer %d arguments dans cet ordre : une chaine, une chaine a comparer, un fd, une chaine a ecrire dans le fd, ", 7);
 		printf("la taille quelle est supposee faire, le path vers un fichier, le nombre de byte a y lire" );
@@ -158,6 +159,10 @@ int    main(int ac, char **av)
 	test_write_fd(av[6], av[4], atoi(av[5]));
 	test_read(av[6], atoi(av[7]));
 	test_strdup(av[1]);
+*/
 
+	(void)ac;
+
+	printf("%d\n", ft_atoi_base(av[1], av[2]));
 	return (0);
 }
