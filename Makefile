@@ -14,16 +14,19 @@ NAME	= libasm.a
 
 SRCS	= ft_strlen.s ft_strcpy.s ft_strcmp.s ft_write.s ft_read.s ft_strdup.s ft_atoi_base.s
 OBJS	= $(SRCS:.s=.o)
+TESTS   = testing test1 test2 NewFile
 
-LD        = ld
-
+# Assembleur
 AS		= nasm
+# format = elf64bits
 ASFLAGS	= -f elf64
+# includes debug informations, usefull to debug with GDB
 TSFLAGS	= -g
 
 CC		= cc
 CPATH	= .
-CFLAGS	= -m64 -Wall -Wextra -g # -Werror -g
+# -m64 = compiles in 64bits
+CFLAGS	= -m64 -Wall -Wextra -g # -Werror
 #MAIN	= testyo.c
 MAIN	= main.c
 
@@ -32,18 +35,17 @@ all:	$(NAME)
 #linke les .o generes par la regle %.o
 
 $(NAME):	$(OBJS)
+#           ar = archive manipulation ; r: add or replace files ; c: creates archive if doesnt exist ; s : updates symbols
 			ar rcs $@ $(OBJS)
-			@ranlib $(NAME)
 
-#definit la regle de compilation a effectuer pour chaque fichier,
-#les uns apres les autres
+# defines a rule that will be used to compile every file, one after another
 %.o:	%.s
 		$(AS) $(ASFLAGS) $(TSFLAGS) $< -o $@ 
 
 
-#pour avoir dirctement tous les tests prets a etre executes :
-# -L. cherche une librairie dans le repertroire courant
-# -lasm permet de specifier qu on lie une librairie asm
+# this will generate every test, ready to be executed
+# -L. search for a library into current repository
+# -lasm specifies that we links to an assembly library
 testing:	$(NAME) $(MAIN)
 		$(CC) $(CFLAGS) -o $@ $(MAIN) -L$(CPATH) -lasm
 
@@ -51,7 +53,7 @@ clean:
 		rm -rf $(OBJS)
 
 fclean:	clean
-		rm -rf $(NAME) testing test1 test2 NewFile
+		rm -rf $(NAME) $(TESTS)
 
 re:		fclean
 		make
